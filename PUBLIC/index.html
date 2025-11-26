@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer Bingwa Services</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header Container -->
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="logo-area">
+        <img src="../images/accicon.png" alt="Primer Bingwa Icon" class="logo" />
+        <div class="title-block">
+          <h1>Primer Bingwa™</h1>
+          <p class="tagline">Empowering Your Connection Every Day</p>
+        </div>
+      </div>
+      <div class="support-contact">
+        <div class="support-info">
+          <p class="support-label">Need Help?</p>
+          <p class="support-phone">📞 +254 793916502</p>
+          <p class="support-email">✉️ support@primerbingwa.com</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Data Bundles Section -->
+      <section class="section-container data-section">
+        <h2 class="section-title">Buy Data Bundles</h2>
+        <p class="section-description">Get fast internet at the best prices</p>
+        <div id="dataBundlesGrid" class="packages-grid">
+          <!-- Packages dynamically rendered by scrpt.js -->
+        </div>
+      </section>
+
+      <!-- Quick Airtime Purchase Container -->
+      <section class="section-container quick-airtime-section">
+        <h2 class="section-title">Quick Airtime Purchase</h2>
+        <p class="section-description">Enter any amount and top up instantly</p>
+        <form id="quickAirtimeForm" class="quick-airtime-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quickPhoneInput">Phone Number</label>
+              <input id="quickPhoneInput" type="tel" placeholder="0712345678" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="quickAmountInput">Amount (Ksh)</label>
+              <input id="quickAmountInput" type="number" placeholder="100" min="10" class="form-input" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+          <p id="quickAirtimeMessage" class="checkout-message"></p>
+        </form>
+      </section>
+
+      <!-- Airtime Section -->
+      <section class="section-container airtime-section">
+        <h2 class="section-title">Buy Airtime</h2>
+        <p class="section-description">Top up your line instantly with Primer Bingwa services</p>
+        <div id="airtimeGrid" class="packages-grid">
+          <!-- Packages dynamically rendered by scrpt.js -->
+        </div>
+      </section>
+
+      <!-- Minutes Section -->
+      <section class="section-container minutes-section">
+        <h2 class="section-title">Buy Minutes</h2>
+        <p class="section-description">Talk more with our affordable minute bundles</p>
+        <div id="minutesGrid" class="packages-grid">
+          <!-- Packages dynamically rendered by scrpt.js -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer Container -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>&copy; 2025 Primer Bingwa Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Complete Purchase</h2>
+        <button id="closeModalBtn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="selectedPkg" class="selected-package-info"></p>
+        <form id="checkoutForm">
+          <input id="phoneInput" type="tel" placeholder="Enter Phone (e.g. 0712345678)" class="form-input" required>
+          <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+        </form>
+        <p id="checkoutMessage" class="checkout-message"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scrpt.js"></script>
+</body>
+</html>
