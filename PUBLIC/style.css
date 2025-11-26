@@ -22,6 +22,62 @@ body {
   padding: 0 20px;
 }
 
+/* ===== Airtime Split Container ===== */
+.airtime-split-container {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.airtime-custom, .airtime-fixed {
+  background: #f7f7fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 28px 24px;
+  flex: 1 1 320px;
+  min-width: 300px;
+}
+.custom-title, .fixed-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #4b2e83;
+}
+.custom-airtime-form .form-group, .fixed-airtime-form .form-group {
+  margin-bottom: 16px;
+}
+.input-hint {
+  font-size: 12px;
+  color: #888;
+  margin-left: 2px;
+}
+.fixed-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.btn-secondary {
+  background: #e8d5f2;
+  color: #4b2e83;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-secondary:hover {
+  background: #d4c5e6;
+}
+.checkout-message {
+  font-size: 15px;
+  margin-top: 8px;
+}
+@media (max-width: 900px) {
+  .airtime-split-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
 /* ===== Header ===== */
 .main-header {
   background: linear-gradient(90deg, #e8d5f2, #d4c5e6);

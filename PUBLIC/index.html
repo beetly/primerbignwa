@@ -41,34 +41,50 @@
         </div>
       </section>
 
-      <!-- Quick Airtime Purchase Container -->
-      <section class="section-container quick-airtime-section">
-        <h2 class="section-title">Quick Airtime Purchase</h2>
-        <p class="section-description">Enter any amount and top up instantly</p>
-        <form id="quickAirtimeForm" class="quick-airtime-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="quickPhoneInput">Phone Number</label>
-              <input id="quickPhoneInput" type="tel" placeholder="0712345678" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label for="quickAmountInput">Amount (Ksh)</label>
-              <input id="quickAmountInput" type="number" placeholder="100" min="10" class="form-input" required>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
-          <p id="quickAirtimeMessage" class="checkout-message"></p>
-        </form>
-      </section>
-
-      <!-- Airtime Section -->
+      <!-- Airtime Section (Split: Custom + Fixed) -->
       <section class="section-container airtime-section">
         <h2 class="section-title">Buy Airtime</h2>
         <p class="section-description">Top up your line instantly with Primer Bingwa services</p>
-        <div id="airtimeGrid" class="packages-grid">
-          <!-- Packages dynamically rendered by scrpt.js -->
+        <div class="airtime-split-container">
+          <!-- Left: Custom Amount -->
+          <div class="airtime-custom">
+            <h3 class="custom-title">Custom Amount</h3>
+            <form id="customAirtimeForm" class="custom-airtime-form">
+              <div class="form-group">
+                <label for="customPhoneInput">Phone Number</label>
+                <input id="customPhoneInput" type="tel" placeholder="0712345678" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="customAmountInput">Amount (Ksh)</label>
+                <input id="customAmountInput" type="number" placeholder="1000" min="1000" max="60000" class="form-input" required>
+                <small class="input-hint">Min 1000, Max 60000</small>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Pay Custom Amount</button>
+              <p id="customAirtimeMessage" class="checkout-message"></p>
+            </form>
+          </div>
+          <!-- Right: Fixed Credit Options -->
+          <div class="airtime-fixed">
+            <h3 class="fixed-title">Buy Credit</h3>
+            <div class="fixed-options">
+              <form class="fixed-airtime-form" id="fixedAirtimeForm">
+                <div class="form-group">
+                  <label for="fixedPhoneInput">Phone Number</label>
+                  <input id="fixedPhoneInput" type="tel" placeholder="0712345678" class="form-input" required>
+                </div>
+                <div class="fixed-buttons">
+                  <button type="button" class="btn btn-secondary" data-amount="50">Buy 50</button>
+                  <button type="button" class="btn btn-secondary" data-amount="100">Buy 100</button>
+                  <button type="button" class="btn btn-secondary" data-amount="250">Buy 250</button>
+                </div>
+                <p id="fixedAirtimeMessage" class="checkout-message"></p>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
+
+
 
       <!-- Minutes Section -->
       <section class="section-container minutes-section">

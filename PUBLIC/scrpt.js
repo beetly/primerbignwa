@@ -125,51 +125,82 @@ paymentModal.addEventListener("click", (e) => {
   }
 });
 
-// ===== Quick Airtime Form Handler =====
-const quickAirtimeForm = document.getElementById("quickAirtimeForm");
-const quickAirtimeMessage = document.getElementById("quickAirtimeMessage");
+// ===== Custom Airtime Form Handler =====
+const customAirtimeForm = document.getElementById("customAirtimeForm");
+const customAirtimeMessage = document.getElementById("customAirtimeMessage");
 
-quickAirtimeForm.addEventListener("submit", async (e) => {
+customAirtimeForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  const phone = document.getElementById("quickPhoneInput").value.trim();
-  const amount = document.getElementById("quickAmountInput").value.trim();
-
+  const phone = document.getElementById("customPhoneInput").value.trim();
+  const amount = document.getElementById("customAmountInput").value.trim();
   if (!phone || phone.length < 9) {
-    quickAirtimeMessage.textContent = "Enter a valid phone number.";
-    quickAirtimeMessage.style.color = "#d9534f";
+    customAirtimeMessage.textContent = "Enter a valid phone number.";
+    customAirtimeMessage.style.color = "#d9534f";
     return;
   }
-
-  if (!amount || amount < 10) {
-    quickAirtimeMessage.textContent = "Amount must be at least 10 Ksh.";
-    quickAirtimeMessage.style.color = "#d9534f";
+  if (!amount || amount < 1000 || amount > 60000) {
+    customAirtimeMessage.textContent = "Amount must be between 1000 and 60000 Ksh.";
+    customAirtimeMessage.style.color = "#d9534f";
     return;
   }
-
-  // Simulate payment request
   try {
-    quickAirtimeMessage.textContent = "Processing payment...";
-    quickAirtimeMessage.style.color = "#666";
-
+    customAirtimeMessage.textContent = "Processing payment...";
+    customAirtimeMessage.style.color = "#666";
     const response = await axios.post("/stkpush", {
       phone: phone,
       amount: parseInt(amount)
     });
-
     if (response.data.ResponseCode === "0") {
-      quickAirtimeMessage.textContent = `Success! Payment prompt sent to ${phone} for Ksh ${amount}.`;
-      quickAirtimeMessage.style.color = "#2ba84a";
-      quickAirtimeForm.reset();
+      customAirtimeMessage.textContent = `Success! Payment prompt sent to ${phone} for Ksh ${amount}.`;
+      customAirtimeMessage.style.color = "#2ba84a";
+      customAirtimeForm.reset();
     } else {
-      quickAirtimeMessage.textContent = "Payment request failed. Try again.";
-      quickAirtimeMessage.style.color = "#d9534f";
+      customAirtimeMessage.textContent = "Payment request failed. Try again.";
+      customAirtimeMessage.style.color = "#d9534f";
     }
   } catch (error) {
     console.error(error);
-    quickAirtimeMessage.textContent = "Error initiating payment. Please try again later.";
-    quickAirtimeMessage.style.color = "#d9534f";
+    customAirtimeMessage.textContent = "Error initiating payment. Please try again later.";
+    customAirtimeMessage.style.color = "#d9534f";
   }
+});
+
+// ===== Fixed Airtime Form Handler =====
+const fixedAirtimeForm = document.getElementById("fixedAirtimeForm");
+const fixedAirtimeMessage = document.getElementById("fixedAirtimeMessage");
+const fixedPhoneInput = document.getElementById("fixedPhoneInput");
+const fixedButtons = document.querySelectorAll(".fixed-buttons .btn");
+
+fixedButtons.forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const phone = fixedPhoneInput.value.trim();
+    const amount = btn.getAttribute("data-amount");
+    if (!phone || phone.length < 9) {
+      fixedAirtimeMessage.textContent = "Enter a valid phone number.";
+      fixedAirtimeMessage.style.color = "#d9534f";
+      return;
+    }
+    try {
+      fixedAirtimeMessage.textContent = "Processing payment...";
+      fixedAirtimeMessage.style.color = "#666";
+      const response = await axios.post("/stkpush", {
+        phone: phone,
+        amount: parseInt(amount)
+      });
+      if (response.data.ResponseCode === "0") {
+        fixedAirtimeMessage.textContent = `Success! Payment prompt sent to ${phone} for Ksh ${amount}.`;
+        fixedAirtimeMessage.style.color = "#2ba84a";
+        fixedAirtimeForm.reset();
+      } else {
+        fixedAirtimeMessage.textContent = "Payment request failed. Try again.";
+        fixedAirtimeMessage.style.color = "#d9534f";
+      }
+    } catch (error) {
+      console.error(error);
+      fixedAirtimeMessage.textContent = "Error initiating payment. Please try again later.";
+      fixedAirtimeMessage.style.color = "#d9534f";
+    }
+  });
 });
 
 // Initialize on page load
